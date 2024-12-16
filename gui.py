@@ -15,10 +15,10 @@ class MatrixEffect(QWidget):
         self.drops = []
         self.timer = QTimer()
         self.timer.timeout.connect(self.update)
-        self.timer.start(100)  # Update every 100ms
+        self.timer.start(100)  
         
         # Initialize drops
-        for i in range(30):  # Number of columns for the matrix effect
+        for i in range(30):  
             self.drops.append({
                 'x': random.randint(0, 600),
                 'y': random.randint(0, 100),
@@ -27,20 +27,20 @@ class MatrixEffect(QWidget):
             
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.fillRect(self.rect(), QColor(0, 0, 0))  # Black background
+        painter.fillRect(self.rect(), QColor(0, 0, 0))  
         painter.setFont(QFont('Courier', 10))
         
         for drop in self.drops:
             # Draw random matrix character
             char = random.choice(self.chars)
-            painter.setPen(QColor(0, 255, 0))  # Green text color
+            painter.setPen(QColor(0, 255, 0))  
             painter.drawText(drop['x'], drop['y'], char)
             
             # Update position
             drop['y'] += drop['speed']
             if drop['y'] > self.height():
                 drop['y'] = 0
-                drop['x'] = random.randint(0, self.width())  # Reset x position to random
+                drop['x'] = random.randint(0, self.width())  
 
 
 class RansomwareWindow(QMainWindow):
@@ -104,7 +104,7 @@ class RansomwareWindow(QMainWindow):
 
         # BINARY CODE ANIMATION (with special area below the title)
         self.matrix_effect = MatrixEffect(self)
-        self.matrix_effect.setFixedHeight(150)  # Fixed height for binary animation area
+        self.matrix_effect.setFixedHeight(150)  
         layout.addWidget(self.matrix_effect)
 
         # Status display
@@ -120,7 +120,7 @@ class RansomwareWindow(QMainWindow):
 
         # Make public key copy-pasteable
         self.public_key_text = QLineEdit(f"{self.rsa.public_key}")
-        self.public_key_text.setReadOnly(True)  # Set to readonly so it's not editable
+        self.public_key_text.setReadOnly(True)  
         layout.addWidget(self.public_key_text)
 
         self.private_key_label = QLabel("Private Key:")
@@ -128,7 +128,7 @@ class RansomwareWindow(QMainWindow):
 
         # Make private key copy-pasteable
         self.private_key_text = QLineEdit(f"{self.rsa.private_key[0]}")
-        self.private_key_text.setReadOnly(True)  # Set to readonly so it's not editable
+        self.private_key_text.setReadOnly(True)  
         layout.addWidget(self.private_key_text)
 
         # Progress bar
@@ -221,7 +221,7 @@ class RansomwareWindow(QMainWindow):
 
         self.worker = WorkerThread(self.rsa, self.selected_directory, 'encrypt')
         self.worker.progress.connect(self.update_status)
-        self.worker.finished.connect(self.show_ransomware_popup)  # Show ransomware pop-up after encryption
+        self.worker.finished.connect(self.show_ransomware_popup)  
         self.worker.start()
 
 
