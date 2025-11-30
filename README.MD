@@ -1,5 +1,7 @@
 # Ransomware Simulator with RSA 🚨
 
+![Logo](ransom.png)
+
 ## Project Description
 
 This project is a **ransomware simulator** that uses **RSA-4096 bits algorithm** to encrypt and decrypt files. The application simulates how ransomware works, where the victim's files are encrypted using RSA encryption, and the private RSA key is used to decrypt the encrypted files.
